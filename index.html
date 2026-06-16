@@ -596,11 +596,40 @@
     <script>
         // Default Teachers list to start with (so the app isn't empty on load)
         const DEFAULT_TEACHERS = [
-            { id: "t1", name: "ນາງ ມະນີວອນ ພົມມະຈັນ", role: "ຄູສອນ ຄະນິດສາດ" },
-            { id: "t2", name: "ທ້າວ ບຸນທັນ ແກ້ວມະນີ", role: "ຄູສອນ ຟີຊິກສາດ" },
-            { id: "t3", name: "ນາງ ວິໄລວັນ ສີສະຫວັນ", role: "ຄູສອນ ພາສາລາວ-ວັນນະຄະດີ" },
-            { id: "t4", name: "ທ້າວ ສົມພອນ ວິໄລສັກ", role: "ຄູສອນ ປະຫວັດສາດ" },
-            { id: "t5", name: "ນາງ ສຸດາພອນ ແສງດາລາ", role: "ຄູສອນ ພາສາອັງກິດ" }
+            { id: "T01", name: "ນາງ ນີລາວັນ ວິຣະຖາວອນ", role: "ຜູ້ອຳນວຍການ" },
+    { id: "T02", name: "ທ້າວ ແສງຕາວັນ ວິຣະຖາວອນລາຊພົນ", role: "ຮອງ ຜອ" },
+    { id: "T03", name: "ນາງ ໄຄແກ້ວ ພົມມະຄຳ", role: "ຮອງ ຜອ" },
+    { id: "T04", name: "ທ້າວ ສີໂຫ ວັນນະສີ", role: "ຮອງ ຜອ" },
+    { id: "T05", name: "ນາງ ຄອນສະໄໝ ໂສມເສນີວົງ", role: "ຄູສອນ ວິຊາ ປະຫວັດສາດ" },
+    { id: "T06", name: "ນາງ ບຸມຕາ ຄຳພູວົງ", role: "ຄູສອນ ວິຊາ ຄະນິດສາດ" },
+    { id: "T07", name: "ນາງ ຕານ້ອຍ ຈັນທະວົງ", role: "ຄູສອນ ວິຊາ ພາສາລາວ" },
+    { id: "T08", name: "ນາງ ຈັນທະຈອນ ທິບພະຈັນ", role: "ຄູສອນ ວິຊາ ຟີຊິກສາດ" },
+    { id: "T09", name: "ນາງ ໄກສອນ ທະນູຄຳ", role: "ຄູສອນ ວິຊາ ພາສາລາວ" },
+    { id: "T10", name: "ນາງ ເຈຕາລິນ ພິມມະສອນ", role: "ຄູສອນ ວິຊາ ພາສາລາວ" },
+    { id: "T11", name: "ທ້າວ ສຸລິວັນ ມຸນີວົງ", role: "ຄູສອນ ວິຊາ ສຶກສາພົນລະເມືອງ" },
+    { id: "T12", name: "ນາງ ສອນຕາ ໄຊຍະຖາ", role: "ຄູສອນ ວິຊາ ຊີວະສາດ" },
+    { id: "T13", name: "ນາງ ເມກະຫຼາ ໄຊຍະວົງສາ", role: "ຄູສອນ ວິຊາ ຊີວະສາດ" },
+    { id: "T14", name: "ນາງ ປານຕາ ສາຍຊົ່ງເດດ", role: "ຄູສອນ ວິຊາ ICT" },
+    { id: "T15", name: "ນາງ ພຸດທະພອນ ພູມິນ", role: "ຄູສອນ ວິຊາ ເຄມີສາດ" },
+    { id: "T16", name: "ນາງ ສຸມິດຕາ ພິມມະສອນ", role: "ຄູສອນ ວິຊາ ພາສາຈີນ" },
+    { id: "T17", name: "ນາງ ຄານສີ ສິດທິວົງ", role: "ຄູສອນ ວິຊາ ເຄມີສາດ" },
+    { id: "T18", name: "ນາງ ແສງມະນີ ສີຊານົນ", role: "ຄູສອນ ວິຊາ ຄະນິດສາດ" },
+    { id: "T19", name: "ນາງ ແສງເດືອນ ວິຊຸນນະລາດ", role: "ຄູສອນ ວິຊາ ຄະນິດສາດ" },
+    { id: "T20", name: "ທ້າວ ສຸກັນ ຍາສາມສະອາດ", role: "ຄູສອນ ວິຊາ ຄະນິດສາດ" },
+    { id: "T21", name: "ນາງ ລັດສະໝີ ໄມຈັນຕາງ", role: "ຄູສອນ ວິຊາ ພູມສາດ" },
+    { id: "T22", name: "ທ້າວ ແທນຟູ ໄຊຍະວື", role: "ຄູສອນ ວິຊາ ພູມສາດ" },
+    { id: "T23", name: "ທ້າວ ຍອດ ວົງສຳພັນ", role: "ຄູສອນ ວິຊາ ສຶກສາພົນລະເມືອງ" },
+    { id: "T24", name: "ນາງ ພັດສະລິນ ປະດິດ", role: "ຄູສອນ ວິຊາ ພະລະສຶກສາ" },
+    { id: "T25", name: "ທ້າວ ກອງມະນີ ອຸ່ນມະໂນ", role: "ຄູສອນ ວິຊາ ຟີຊິກສາດ" }, 
+    { id: "T26", name: "ນາງ ວາດສະໜາ ດາລາວົງ", role: "ຄູສອນ ວິຊາ ພາສາຈີນ" },
+    { id: "T27", name: "ນາງ ພິລາວັນ ກອງລາ", role: "ຄູສອນ ວິຊາ ພາສາລາວ" },
+    { id: "T28", name: "ທ້າວ ຫຼົງຢ່າງ ຫວ່າງປໍ", role: "ຄູສອນ ວິຊາ ຄະນິດສາດ" },
+    { id: "T29", name: "ນາງ ໄດນານາ ສົມສາຍ", role: "ຄູສອນ ວິຊາ ເຄມີສາດ" },
+    { id: "T30", name: "ນາງ ລະນະລັດ ວົງພັກດີ", role: "ຄູສອນ ວິຊາ ຊີວະສາດ" },
+    { id: "T31", name: "ທ້າວ ໄມອ່ອນ ໄຊຍະວົງ", role: "ຄູສອນ ວິຊາ ພາສາລາວ" },
+    { id: "T32", name: "ນາງ ແສງມະນີ ສີບໍລິບານ", role: "ຄູສອນ ວິຊາ ພາສາຈີນ" },
+    { id: "T33", name: "ທ້າວ ໂອລິເຊ ຈັນທະວົງ", role: "ຄູສອນ ວິຊາ ປະຫວັດສາດ" },
+    { id: "T34", name: "ທ້າວ ຄຳມ່ວນ ສຸລິທອນ", role: "ຄູສອນ ວິຊາ ແຕ້ມຮູບ" }
         ];
 
         // Sample initial evaluation records to show how the system automatically aggregates results immediately.
@@ -714,21 +743,51 @@
         }
 
         // UI Tabs switching logic
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
+        // 1. ວາງລະຫັດຜ່ານໄວ້ທາງເທິງສຸດຂອງ JavaScript (ປ່ຽນ "Admin1234" ເປັນລະຫັດຂອງທ່ານໄດ້)
+const ADMIN_PASSWORD = "Admin1234"; 
 
-            // Reset tab button styles
-            const tabs = ['form-tab', 'dashboard-tab', 'settings-tab'];
-            tabs.forEach(t => {
-                const btn = document.getElementById(`btn-${t}`);
-                if (t === tabId) {
-                    btn.className = "px-4 py-1.5 rounded-md text-sm font-medium transition-all bg-white text-blue-700 shadow-sm";
-                } else {
-                    btn.className = "px-4 py-1.5 rounded-md text-sm font-medium transition-all text-blue-100 hover:text-white";
-                }
-            });
+// 2. ວາງຟັງຊັນ switchTab ໃໝ່ເຂົ້າໄປ
+function switchTab(tabId) {
+    if (tabId === 'dashboard-tab' || tabId === 'settings-tab') {
+        const passwordInput = prompt("🔒 ກະລຸນາໃສ່ລະຫັດຜ່ານເພື່ອເຂົ້າເຖິງຂໍ້ມູນຄວາມລັບ:");
+        
+        if (passwordInput === null) {
+            return; 
         }
+        
+        if (passwordInput !== ADMIN_PASSWORD) {
+            alert("❌ ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ! ທ່ານບໍ່ມີສິດເຂົ້າເຖິງຂໍ້ມູນນີ້.");
+            return;
+        }
+    }
+
+    // ເຊື່ອງທຸກໆ Tab
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.classList.remove('block');
+        tab.classList.add('hidden');
+    });
+
+    // ສະແດງ Tab ທີ່ເລືອກ
+    const activeTab = document.getElementById(tabId);
+    if (activeTab) {
+        activeTab.classList.remove('hidden');
+        activeTab.classList.add('block');
+    }
+
+    // ປ່ຽນສີປຸ່ມເມນູ
+    const buttons = document.querySelectorAll('nav button');
+    buttons.forEach(btn => {
+        btn.classList.remove('bg-white', 'text-blue-700', 'shadow-sm');
+        btn.classList.add('text-blue-100', 'hover:text-white');
+    });
+
+    const activeBtn = document.getElementById(`btn-${tabId}`);
+    if (activeBtn) {
+        activeBtn.classList.remove('text-blue-100', 'hover:text-white');
+        activeBtn.classList.add('bg-white', 'text-blue-700', 'shadow-sm');
+    }
+}
 
         // Toggle evaluator box display based on Evaluation Type
         function toggleEvaluationType(type) {
