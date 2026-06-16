@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ລະບົບປະເມີນຜົນຄູອອນລາຍ - ສະຫຼຸບຜົນເລັ່ງດ່ວນ</title>
+    <!-- Tailwind CSS for elegant and responsive UI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for clean, professional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Noto Sans Lao -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans Lao', sans-serif;
+        }
+        /* Custom scrollbar for better UX */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-blue-600 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-white p-2 rounded-lg text-blue-600 shadow-inner">
+                    <i class="fa-solid fa-graduation-cap text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">ລະບົບປະເມີນຜົນຄູປະຈຳປີ</h1>
+                    <p class="text-xs text-blue-100">ສະຫຼຸບຜົນປະເມີນເລັ່ງດ່ວນ ປະຈຳສົກຮຽນ 2025-2026</p>
+                </div>
+            </div>
+            
+            <!-- Menu Navigation Tabs -->
+            <nav class="flex bg-blue-700 p-1 rounded-lg">
+                <button onclick="switchTab('form-tab')" id="btn-form-tab" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all bg-white text-blue-700 shadow-sm">
+                    <i class="fa-solid fa-clipboard-question mr-1"></i> ແບບຟອມປະເມີນ
+                </button>
+                <button onclick="switchTab('dashboard-tab')" id="btn-dashboard-tab" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-blue-100 hover:text-white">
+                    <i class="fa-solid fa-chart-line mr-1"></i> ຜົນການປະເມີນ
+                </button>
+                <button onclick="switchTab('settings-tab')" id="btn-settings-tab" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-blue-100 hover:text-white">
+                    <i class="fa-solid fa-gears mr-1"></i> ຈັດການລາຍຊື່ຄູ
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
+        
+        <!-- Alerts Notification Container -->
+        <div id="alert-container" class="hidden mb-4 p-4 rounded-lg flex items-center justify-between transition-all">
+            <span id="alert-message" class="font-medium text-sm"></span>
+            <button onclick="hideAlert()" class="text-lg font-bold">&times;</button>
+        </div>
+
+        <!-- ================= TAB 1: EVALUATION FORM ================= -->
+        <section id="form-tab" class="tab-content block">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Left Sidebar: Form Guide & Info -->
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <span class="bg-red-50 text-red-600 text-xs px-2.5 py-1 rounded-full font-semibold border border-red-100 inline-block mb-3">
+                            <i class="fa-solid fa-clock mr-1"></i> ສົ່ງກ່ອນ ວັນພຸດ ທີ 23
+                        </span>
+                        <h2 class="text-xl font-bold mb-3 text-slate-800">ຄຳແນະນຳການປະເມີນ</h2>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            ລະບົບນີ້ອອກແບບມາເພື່ອເກັບກຳຂໍ້ມູນໃຫ້ໄວ ແລະ ງ່າຍທີ່ສຸດ. ທ່ານສາມາດເລືອກປະເມີນຕົນເອງ ຫຼື ປະເມີນເພື່ອນຮ່ວມງານກໍໄດ້ ໂດຍໃຊ້ເກນໃຫ້ຄະແນນ 1 ຫາ 5.
+                        </p>
+                        <div class="space-y-2 text-xs text-slate-500">
+                            <div class="flex items-center gap-2"><span class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center font-bold">5</span> ດີເລີດ (Excellent)</div>
+                            <div class="flex items-center gap-2"><span class="w-5 h-5 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold">4</span> ດີ (Good)</div>
+                            <div class="flex items-center gap-2"><span class="w-5 h-5 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center font-bold">3</span> ປານກາງ (Fair)</div>
+                            <div class="flex items-center gap-2"><span class="w-5 h-5 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center font-bold">2</span> ອ່ອນ (Poor)</div>
+                            <div class="flex items-center gap-2"><span class="w-5 h-5 bg-red-100 text-red-700 rounded-full flex items-center justify-center font-bold">1</span> ຕ້ອງປັບປຸງດ່ວນ (Critical)</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 text-blue-900">
+                        <h3 class="font-bold mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-scale-unbalanced-di"></i> ສັດສ່ວນນ້ຳໜັກຄະແນນ
+                        </h3>
+                        <ul class="text-sm space-y-2 list-disc pl-5">
+                            <li><strong>ດ້ານການສອນ (50%):</strong> 3 ຂໍ້ປະເມີນ</li>
+                            <li><strong>ດ້ານວິໄນ (30%):</strong> 2 ຂໍ້ປະເມີນ</li>
+                            <li><strong>ດ້ານສ່ວນລວມ (20%):</strong> 2 ຂໍ້ປະເມີນ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Form Sheet -->
+                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <form id="evaluation-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        
+                        <!-- Step 1: Evaluator and Target Selection -->
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1.5">1. ຮູບແບບການປະເມີນ <span class="text-red-500">*</span></label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <label class="flex items-center justify-center p-3 rounded-lg border-2 cursor-pointer transition-all border-blue-500 bg-blue-50 text-blue-700" id="label-eval-self">
+                                        <input type="radio" name="evalType" value="self" checked class="sr-only" onchange="toggleEvaluationType('self')">
+                                        <i class="fa-solid fa-user-check mr-2"></i> ປະເມີນຕົນເອງ
+                                    </label>
+                                    <label class="flex items-center justify-center p-3 rounded-lg border-2 cursor-pointer transition-all border-slate-200 bg-white text-slate-600 hover:bg-slate-50" id="label-eval-peer">
+                                        <input type="radio" name="evalType" value="peer" class="sr-only" onchange="toggleEvaluationType('peer')">
+                                        <i class="fa-solid fa-users mr-2"></i> ປະເມີນເພື່ອນຮ່ວມງານ
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="evaluator-box" class="hidden">
+                                <label class="block text-sm font-semibold text-slate-700 mb-1.5">ຊື່ຜູ້ປະເມີນ (ຕົວທ່ານເອງ) <span class="text-red-500">*</span></label>
+                                <select id="evaluatorId" class="w-full p-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none">
+                                    <option value="">-- ເລືອກຊື່ຂອງທ່ານ --</option>
+                                    <!-- Dynamic Teacher list -->
+                                </select>
+                            </div>
+
+                            <div class="md:col-span-1">
+                                <label id="target-label" class="block text-sm font-semibold text-slate-700 mb-1.5">ເລືອກຄູທີ່ຈະຮັບການປະເມີນ <span class="text-red-500">*</span></label>
+                                <select id="targetTeacherId" required class="w-full p-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none">
+                                    <option value="">-- ເລືອກຄູ --</option>
+                                    <!-- Dynamic Teacher list -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Evaluation Questions -->
+                        <div class="space-y-6">
+                            
+                            <!-- Category 1: Teaching & OBE -->
+                            <div>
+                                <h3 class="text-base font-bold text-blue-700 border-b border-blue-100 pb-2 mb-4 flex items-center gap-2">
+                                    <span class="w-6 h-6 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-xs">1</span>
+                                    ດ້ານການຈັດການຮຽນ-ການສອນ (ນ້ຳໜັກ 50%)
+                                </h3>
+                                <div class="space-y-4">
+                                    <!-- Q1 -->
+                                    <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                        <p class="font-medium text-sm text-slate-800 mb-2">1.1 ມີການກະກຽມບົດສອນ, ແຜນການຮຽນຮູ້ ແລະ ສື່ການສອນລ່ວງໜ້າຢ່າງຄົບຖ້ວນ</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <!-- Stars/Ratings -->
+                                            <script>
+                                                const generateRadioRatings = (qId) => {
+                                                    let html = '';
+                                                    for(let i=1; i<=5; i++) {
+                                                        html += `
+                                                            <label class="flex-1 min-w-[50px] text-center cursor-pointer">
+                                                                <input type="radio" name="${qId}" value="${i}" required class="peer sr-only">
+                                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">
+                                                                    ${i}
+                                                                </div>
+                                                            </label>
+                                                        `;
+                                                    }
+                                                    return html;
+                                                }
+                                            </script>
+                                            <div class="flex w-full gap-2">
+                                                <label class="flex-1 text-center cursor-pointer">
+                                                    <input type="radio" name="q_teach_1" value="1" required class="peer sr-only">
+                                                    <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">1</div>
+                                                </label>
+                                                <label class="flex-1 text-center cursor-pointer">
+                                                    <input type="radio" name="q_teach_1" value="2" class="peer sr-only">
+                                                    <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">2</div>
+                                                </label>
+                                                <label class="flex-1 text-center cursor-pointer">
+                                                    <input type="radio" name="q_teach_1" value="3" class="peer sr-only">
+                                                    <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">3</div>
+                                                </label>
+                                                <label class="flex-1 text-center cursor-pointer">
+                                                    <input type="radio" name="q_teach_1" value="4" class="peer sr-only">
+                                                    <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">4</div>
+                                                </label>
+                                                <label class="flex-1 text-center cursor-pointer">
+                                                    <input type="radio" name="q_teach_1" value="5" class="peer sr-only">
+                                                    <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">5</div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Q2 -->
+                                    <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                        <p class="font-medium text-sm text-slate-800 mb-2">1.2 ການຈັດການສອນທີ່ເນັ້ນນັກຮຽນເປັນໃຈກາງ (Active Learning) ແລະ ສາມາດວັດຜົນການຮຽນໄດ້ຢ່າງຊັດເຈນ</p>
+                                        <div class="flex w-full gap-2">
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_teach_2" value="1" required class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">1</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_teach_2" value="2" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">2</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_teach_2" value="3" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">3</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_teach_2" value="4" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">4</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_teach_2" value="5" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">5</div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- Q3 -->
+                                    <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                        <p class="font-medium text-sm text-slate-800 mb-2">1.3 ສາມາດຄວບຄຸມຫ້ອງຮຽນ, ກະຕຸ້ນຄວາມສົນໃຈ ແລະ ແກ້ໄຂບັນຫາສະເພາະໜ້າໃນຫ້ອງຮຽນໄດ້ດີ</p>
+                                        <div class="flex w-full gap-2">
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_teach_3" value="1" required class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">1</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_teach_3" value="2" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">2</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_teach_3" value="3" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">3</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_teach_3" value="4" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">4</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_teach_3" value="5" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">5</div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Category 2: Discipline & Responsibility -->
+                            <div>
+                                <h3 class="text-base font-bold text-indigo-700 border-b border-indigo-100 pb-2 mb-4 flex items-center gap-2">
+                                    <span class="w-6 h-6 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs">2</span>
+                                    ດ້ານຄວາມຮັບຜິດຊອບ ແລະ ວິໄນ (ນ້ຳໜັກ 30%)
+                                </h3>
+                                <div class="space-y-4">
+                                    <!-- Q4 -->
+                                    <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                        <p class="font-medium text-sm text-slate-800 mb-2">2.1 ເຂົ້າສອນກົງເວລາ, ສອນຄົບຖ້ວນ ແລະ ເຂົ້າຮ່ວມການປະຊຸມຢ່າງສະໝໍ່າສະເໝີ</p>
+                                        <div class="flex w-full gap-2">
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_disc_1" value="1" required class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">1</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_disc_1" value="2" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">2</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_disc_1" value="3" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">3</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_disc_1" value="4" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">4</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_disc_1" value="5" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">5</div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- Q5 -->
+                                    <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                        <p class="font-medium text-sm text-slate-800 mb-2">2.2 ສົ່ງເອກະສານປະຈຳເດືອນ, ປຶ້ມບັນທຶກຄະແນນ ແລະ ບົດລາຍງານຕ່າງໆ ໄດ້ທັນເວລາ</p>
+                                        <div class="flex w-full gap-2">
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_disc_2" value="1" required class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">1</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_disc_2" value="2" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">2</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_disc_2" value="3" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">3</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_disc_2" value="4" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">4</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_disc_2" value="5" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">5</div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Category 3: Community & Relationship -->
+                            <div>
+                                <h3 class="text-base font-bold text-amber-700 border-b border-amber-100 pb-2 mb-4 flex items-center gap-2">
+                                    <span class="w-6 h-6 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-xs">3</span>
+                                    ດ້ານການມີສ່ວນຮ່ວມ ແລະ ມະນຸດສຳພັນ (ນ້ຳໜັກ 20%)
+                                </h3>
+                                <div class="space-y-4">
+                                    <!-- Q6 -->
+                                    <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                        <p class="font-medium text-sm text-slate-800 mb-2">3.1 ໃຫ້ຄວາມຮ່ວມມື ແລະ ຊ່ວຍເຫຼືອກິດຈະກຳຕ່າງໆ ຂອງໂຮງຮຽນເປັນຢ່າງດີ</p>
+                                        <div class="flex w-full gap-2">
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_comm_1" value="1" required class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">1</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_comm_1" value="2" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">2</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_comm_1" value="3" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">3</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_comm_1" value="4" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">4</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_comm_1" value="5" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">5</div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- Q7 -->
+                                    <div class="p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                        <p class="font-medium text-sm text-slate-800 mb-2">3.2 ມີມະນຸດສຳພັນທີ່ດີ, ສ້າງຄວາມສາມັກຄີກັບເພື່ອນຮ່ວມງານ ແລະ ຜູ້ປົກຄອງ</p>
+                                        <div class="flex w-full gap-2">
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_comm_2" value="1" required class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">1</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_comm_2" value="2" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">2</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_comm_2" value="3" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">3</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_comm_2" value="4" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">4</div>
+                                            </label>
+                                            <label class="flex-1 text-center cursor-pointer">
+                                                <input type="radio" name="q_comm_2" value="5" class="peer sr-only">
+                                                <div class="py-2 rounded-lg border border-slate-200 peer-checked:bg-amber-600 peer-checked:text-white peer-checked:border-amber-600 hover:bg-slate-100 text-sm font-semibold text-slate-600">5</div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comment Field -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1.5">ຂໍ້ສະເໜີແນະ ຫຼື ຄວາມຄິດເຫັນເພີ່ມເຕີມ (ຖ້າມີ)</label>
+                                <textarea id="comment" rows="3" class="w-full p-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none placeholder:text-slate-400 text-sm" placeholder="ລະບຸຈຸດເດັ່ນ ຫຼື ຈຸດທີ່ຄວນປັບປຸງ..."></textarea>
+                            </div>
+
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="pt-4 border-t border-slate-100 flex gap-3">
+                            <button type="button" onclick="resetForm()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-3 rounded-xl transition-all">
+                                ล້າງຂໍ້ມູນ
+                            </button>
+                            <button type="submit" class="flex-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-lg shadow-blue-100 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> ສົ່ງແບບປະເມີນ
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: REAL-TIME DASHBOARD ================= -->
+        <section id="dashboard-tab" class="tab-content hidden space-y-6">
+            
+            <!-- Summary Stats Counters -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400">ຈຳນວນຄູທັງໝົດ</p>
+                        <p id="stat-total-teachers" class="text-xl font-bold">0 ຄົນ</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-file-invoice"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400">ໃບປະເມີນທີ່ສົ່ງແລ້ວ</p>
+                        <p id="stat-total-forms" class="text-xl font-bold">0 ໃບ</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-user-pen"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400">ປະເມີນຕົນເອງແລ້ວ</p>
+                        <p id="stat-self-forms" class="text-xl font-bold">0 ຄົນ</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400">ເພື່ອນຮ່ວມງານປະເມີນ</p>
+                        <p id="stat-peer-forms" class="text-xl font-bold">0 ໃບ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Results Section -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-100 pb-4 mb-6">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-800">ຕາຕະລາງສະຫຼຸບຜົນການປະເມີນລາຍບຸກຄົນ</h2>
+                        <p class="text-xs text-slate-400">ຄະແນນລວມ = ປະເມີນຕົນເອງ (50%) + ຄະແນນສະເລ່ຍຈາກເພື່ອນຮ່ວມງານ (50%)</p>
+                    </div>
+                    
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <button onclick="exportToCSV()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-excel"></i> ສົ່ງອອກ Excel/CSV
+                        </button>
+                        <button onclick="resetAllData()" class="px-3 py-2 border border-red-200 text-red-600 rounded-lg text-sm hover:bg-red-50 transition-all" title="ລຶບຜົນການປະເມີນທັງໝົດ">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Table View -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-xs font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+                                <th class="p-4">ຊື່ ແລະ ນາມສະກຸນ</th>
+                                <th class="p-4 text-center">ປະເມີນຕົນເອງ (50%)</th>
+                                <th class="p-4 text-center">ເພື່ອນປະເມີນ (50%)</th>
+                                <th class="p-4 text-center">ຄະແນນລວມ (%)</th>
+                                <th class="p-4 text-center">ປະເພດຜົນງານ</th>
+                                <th class="p-4 text-center">ການຈັດການ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="evaluation-table-rows" class="divide-y divide-slate-100 text-sm">
+                            <!-- Rows will be injected here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Visual Explanations / Grading Scale -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl">
+                    <span class="text-xs bg-emerald-500 text-white px-2 py-0.5 rounded font-bold">Grade A</span>
+                    <p class="font-bold text-emerald-800 mt-2 text-sm">ດີເລີດ (90.00% - 100%)</p>
+                    <p class="text-xs text-emerald-600 mt-1">ຜົນງານໂດດເດັ່ນ ພິຈາລະນາໃບຍ້ອງຍໍຂັ້ນເທິງ</p>
+                </div>
+                <div class="bg-blue-50 border border-blue-100 p-4 rounded-xl">
+                    <span class="text-xs bg-blue-500 text-white px-2 py-0.5 rounded font-bold">Grade B</span>
+                    <p class="font-bold text-blue-800 mt-2 text-sm">ດີ (80.00% - 89.99%)</p>
+                    <p class="text-xs text-blue-600 mt-1">ຜົນງານໄດ້ມາດຕະຖານ ປະຕິບັດໜ້າທີ່ໄດ້ດີ</p>
+                </div>
+                <div class="bg-amber-50 border border-amber-100 p-4 rounded-xl">
+                    <span class="text-xs bg-amber-500 text-white px-2 py-0.5 rounded font-bold">Grade C</span>
+                    <p class="font-bold text-amber-800 mt-2 text-sm">ປານກາງ (70.00% - 79.99%)</p>
+                    <p class="text-xs text-amber-600 mt-1">ຜົນງານປານກາງ ຄວນແນະນຳເພີ່ມເຕີມໃນປີໜ້າ</p>
+                </div>
+                <div class="bg-red-50 border border-red-100 p-4 rounded-xl">
+                    <span class="text-xs bg-red-500 text-white px-2 py-0.5 rounded font-bold">Grade D</span>
+                    <p class="font-bold text-red-800 mt-2 text-sm">ຕ້ອງປັບປຸງ (ຫຼຸດ 70%)</p>
+                    <p class="text-xs text-red-600 mt-1">ຕ້ອງໄດ້ຮັບການຊ່ວຍເຫຼືອ ແລະ ປັບປຸງດ່ວນ</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= TAB 3: MANAGE TEACHERS (SETTINGS) ================= -->
+        <section id="settings-tab" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Add New Teacher -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 h-fit">
+                    <h2 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-user-plus text-blue-600"></i> ເພີ່ມລາຍຊື່ຄູໃໝ່
+                    </h2>
+                    <form onsubmit="addNewTeacher(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 mb-1">ຊື່ ແລະ ນາມສະກຸນ <span class="text-red-500">*</span></label>
+                            <input type="text" id="new-teacher-name" required class="w-full p-2.5 rounded-lg border border-slate-200 text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="ຕົວຢ່າງ: ທ່ານ ສົມຊາຍ ດີເລີດ">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 mb-1">ຕຳແໜ່ງ / ວິຊາສອນ</label>
+                            <input type="text" id="new-teacher-role" class="w-full p-2.5 rounded-lg border border-slate-200 text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="ຕົວຢ່າງ: ຄູສອນ ຄະນິດສາດ">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold p-2.5 rounded-lg transition-all text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus"></i> ເພີ່ມລາຍຊື່
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Teacher List & Actions -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-bold text-slate-800">ລາຍຊື່ຄູທັງໝົດໃນລະບົບ</h2>
+                        <button onclick="restoreDefaultTeachers()" class="text-xs text-blue-600 hover:underline">
+                            <i class="fa-solid fa-rotate-left mr-1"></i> ກັບຄືນຄ່າເລີ່ມຕົ້ນ
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-slate-50 text-xs font-bold text-slate-500 border-b border-slate-200">
+                                    <th class="p-3">ລຳດັບ</th>
+                                    <th class="p-3">ຊື່ ແລະ ນາມສະກຸນ</th>
+                                    <th class="p-3">ຕຳແໜ່ງ</th>
+                                    <th class="p-3 text-right">ຈັດການ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="settings-teacher-rows" class="divide-y divide-slate-100 text-sm">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400 py-6 mt-12 border-t border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="text-sm">ລະບົບປະເມີນຜົນຄູປະຈຳສົກຮຽນ 2025-2026 - ສະຫຼຸບຜົນໄດ້ໄວ ແລະ ຖືກຕ້ອງ</p>
+            <p class="text-xs text-slate-500">ພັດທະນາຂຶ້ນເພື່ອເປັນເຄື່ອງມືເລັ່ງດ່ວນໃນການຈັດປະເພດຄູ ກ່ອນວັນພຸດທີ 23.</p>
+        </div>
+    </footer>
+
+    <!-- Detail View Modal -->
+    <div id="detail-modal" class="hidden fixed inset-0 bg-slate-900 bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[85vh] flex flex-col">
+            <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-2xl">
+                <div>
+                    <h3 id="modal-title" class="font-bold text-slate-800 text-base">ລາຍລະອຽດຄະແນນ</h3>
+                    <p id="modal-subtitle" class="text-xs text-slate-500"></p>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
+            </div>
+            
+            <div id="modal-content" class="p-6 overflow-y-auto space-y-4 text-sm">
+                <!-- Content injected dynamically -->
+            </div>
+            
+            <div class="p-4 border-t border-slate-100 bg-slate-50 rounded-b-2xl flex justify-end">
+                <button onclick="closeModal()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg text-sm">
+                    ປິດໜ້າຕ່າງ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Logic of the Application -->
+    <script>
+        // Default Teachers list to start with (so the app isn't empty on load)
+        const DEFAULT_TEACHERS = [
+            { id: "t1", name: "ນາງ ມະນີວອນ ພົມມະຈັນ", role: "ຄູສອນ ຄະນິດສາດ" },
+            { id: "t2", name: "ທ້າວ ບຸນທັນ ແກ້ວມະນີ", role: "ຄູສອນ ຟີຊິກສາດ" },
+            { id: "t3", name: "ນາງ ວິໄລວັນ ສີສະຫວັນ", role: "ຄູສອນ ພາສາລາວ-ວັນນະຄະດີ" },
+            { id: "t4", name: "ທ້າວ ສົມພອນ ວິໄລສັກ", role: "ຄູສອນ ປະຫວັດສາດ" },
+            { id: "t5", name: "ນາງ ສຸດາພອນ ແສງດາລາ", role: "ຄູສອນ ພາສາອັງກິດ" }
+        ];
+
+        // Sample initial evaluation records to show how the system automatically aggregates results immediately.
+        const DEFAULT_EVALUATIONS = [
+            {
+                id: "eval-1",
+                type: "self",
+                evaluatorId: "t1",
+                targetId: "t1",
+                scores: { teach: [4, 4, 5], disc: [5, 4], comm: [5, 4] }, // self score calculation
+                comment: "ຂ້ອຍພະຍາຍາມປັບປຸງການສອນໃຫມ່ໆ ແລະ ສົ່ງວຽກກົງເວລາສະເໝີ."
+            },
+            {
+                id: "eval-2",
+                type: "peer",
+                evaluatorId: "t2",
+                targetId: "t1",
+                scores: { teach: [4, 5, 4], disc: [4, 4], comm: [4, 5] },
+                comment: "ອາຈານ ມະນີວອນ ຊ່ວຍເຫຼືອເພື່ອນຮ່ວມງານດີຫຼາຍ ແລະ ມີການກຽມບົດສອນທີ່ດີ."
+            },
+            {
+                id: "eval-3",
+                type: "peer",
+                evaluatorId: "t3",
+                targetId: "t1",
+                scores: { teach: [5, 4, 4], disc: [5, 5], comm: [5, 5] },
+                comment: "ເປັນຄູແບບຢ່າງທີ່ດີໃນການຮັກສາລະບຽບວິໄນ."
+            },
+            {
+                id: "eval-4",
+                type: "self",
+                evaluatorId: "t2",
+                targetId: "t2",
+                scores: { teach: [4, 4, 3], disc: [4, 3], comm: [4, 4] },
+                comment: "ປີນີ້ຈະເລັ່ງປັບປຸງການສົ່ງບົດລາຍງານໃຫ້ທັນເວລາຂຶ້ນຕື່ມ."
+            },
+            {
+                id: "eval-5",
+                type: "peer",
+                evaluatorId: "t1",
+                targetId: "t2",
+                scores: { teach: [4, 4, 4], disc: [4, 4], comm: [4, 3] },
+                comment: "ອາຈານສອນດີ ແຕ່ບາງຄັ້ງອາດຈະສົ່ງຄະແນນຊ້າກວ່າໝູ່ໜ້ອຍໜຶ່ງ."
+            }
+        ];
+
+        // Core App State
+        let state = {
+            teachers: [],
+            evaluations: []
+        };
+
+        // Initialize App
+        window.onload = function() {
+            // Load state from localStorage or use defaults
+            const savedTeachers = localStorage.getItem('eval_teachers');
+            const savedEvals = localStorage.getItem('eval_records');
+
+            if (savedTeachers) {
+                state.teachers = JSON.parse(savedTeachers);
+            } else {
+                state.teachers = [...DEFAULT_TEACHERS];
+                localStorage.setItem('eval_teachers', JSON.stringify(state.teachers));
+            }
+
+            if (savedEvals) {
+                state.evaluations = JSON.parse(savedEvals);
+            } else {
+                state.evaluations = [...DEFAULT_EVALUATIONS];
+                localStorage.setItem('eval_records', JSON.stringify(state.evaluations));
+            }
+
+            renderAll();
+        };
+
+        // Render everything based on state
+        function renderAll() {
+            populateTeacherSelects();
+            renderDashboard();
+            renderSettingsTeachers();
+        }
+
+        // Dropdown elements rendering
+        function populateTeacherSelects() {
+            const targetSelect = document.getElementById('targetTeacherId');
+            const evaluatorSelect = document.getElementById('evaluatorId');
+            
+            // Store current selection if any
+            const prevTarget = targetSelect.value;
+            const prevEvaluator = evaluatorSelect.value;
+
+            // Clear options
+            targetSelect.innerHTML = '<option value="">-- ເລືອກຄູ --</option>';
+            evaluatorSelect.innerHTML = '<option value="">-- ເລືອກຊື່ຂອງທ່ານ --</option>';
+
+            state.teachers.forEach(t => {
+                const opt1 = document.createElement('option');
+                opt1.value = t.id;
+                opt1.textContent = t.name;
+                targetSelect.appendChild(opt1);
+
+                const opt2 = document.createElement('option');
+                opt2.value = t.id;
+                opt2.textContent = t.name;
+                evaluatorSelect.appendChild(opt2);
+            });
+
+            // Restore selection if they still exist
+            if (state.teachers.some(t => t.id === prevTarget)) targetSelect.value = prevTarget;
+            if (state.teachers.some(t => t.id === prevEvaluator)) evaluatorSelect.value = prevEvaluator;
+        }
+
+        // UI Tabs switching logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Reset tab button styles
+            const tabs = ['form-tab', 'dashboard-tab', 'settings-tab'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`btn-${t}`);
+                if (t === tabId) {
+                    btn.className = "px-4 py-1.5 rounded-md text-sm font-medium transition-all bg-white text-blue-700 shadow-sm";
+                } else {
+                    btn.className = "px-4 py-1.5 rounded-md text-sm font-medium transition-all text-blue-100 hover:text-white";
+                }
+            });
+        }
+
+        // Toggle evaluator box display based on Evaluation Type
+        function toggleEvaluationType(type) {
+            const evaluatorBox = document.getElementById('evaluator-box');
+            const targetLabel = document.getElementById('target-label');
+            const labelSelf = document.getElementById('label-eval-self');
+            const labelPeer = document.getElementById('label-eval-peer');
+
+            if (type === 'self') {
+                evaluatorBox.classList.add('hidden');
+                document.getElementById('evaluatorId').removeAttribute('required');
+                targetLabel.textContent = "ເລືອກຄູທີ່ຈະຮັບການປະເມີນ (ຕົວທ່ານເອງ) *";
+                
+                labelSelf.className = "flex items-center justify-center p-3 rounded-lg border-2 cursor-pointer transition-all border-blue-500 bg-blue-50 text-blue-700";
+                labelPeer.className = "flex items-center justify-center p-3 rounded-lg border-2 cursor-pointer transition-all border-slate-200 bg-white text-slate-600 hover:bg-slate-50";
+            } else {
+                evaluatorBox.classList.remove('hidden');
+                document.getElementById('evaluatorId').setAttribute('required', 'true');
+                targetLabel.textContent = "ເລືອກເພື່ອນຮ່ວມງານທີ່ຈະປະເມີນ *";
+
+                labelPeer.className = "flex items-center justify-center p-3 rounded-lg border-2 cursor-pointer transition-all border-blue-500 bg-blue-50 text-blue-700";
+                labelSelf.className = "flex items-center justify-center p-3 rounded-lg border-2 cursor-pointer transition-all border-slate-200 bg-white text-slate-600 hover:bg-slate-50";
+            }
+        }
+
+        // Notification Alerts
+        function showAlert(message, type = 'success') {
+            const container = document.getElementById('alert-container');
+            const msgEl = document.getElementById('alert-message');
+            
+            msgEl.textContent = message;
+            container.classList.remove('hidden');
+            
+            if (type === 'success') {
+                container.className = "mb-4 p-4 rounded-lg flex items-center justify-between transition-all bg-emerald-50 text-emerald-800 border border-emerald-100";
+            } else {
+                container.className = "mb-4 p-4 rounded-lg flex items-center justify-between transition-all bg-red-50 text-red-800 border border-red-100";
+            }
+
+            // Auto scroll to alert
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function hideAlert() {
+            document.getElementById('alert-container').classList.add('hidden');
+        }
+
+        // Reset inputs on form
+        function resetForm() {
+            document.getElementById('evaluation-form').reset();
+            toggleEvaluationType('self');
+            // Uncheck custom radios manually if needed
+            document.querySelectorAll('#evaluation-form input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+            // Re-check first options for self-type
+            document.querySelector('input[name="evalType"][value="self"]').checked = true;
+        }
+
+        // Handle Evaluation Submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const evalType = document.querySelector('input[name="evalType"]:checked').value;
+            const targetId = document.getElementById('targetTeacherId').value;
+            let evaluatorId = targetId; // For self evaluation, target is the evaluator
+
+            if (evalType === 'peer') {
+                evaluatorId = document.getElementById('evaluatorId').value;
+                if (evaluatorId === targetId) {
+                    showAlert("ທ່ານບໍ່ສາມາດປະເມີນຕົນເອງໃນໂໝດ 'ເພື່ອນຮ່ວມງານປະເມີນ' ໄດ້. ກະລຸນາເລືອກຮູບແບບ 'ປະເມີນຕົນເອງ' ແທນ.", "error");
+                    return;
+                }
+            }
+
+            // Extract scores
+            const q_teach_1 = parseInt(document.querySelector('input[name="q_teach_1"]:checked')?.value || 0);
+            const q_teach_2 = parseInt(document.querySelector('input[name="q_teach_2"]:checked')?.value || 0);
+            const q_teach_3 = parseInt(document.querySelector('input[name="q_teach_3"]:checked')?.value || 0);
+            
+            const q_disc_1 = parseInt(document.querySelector('input[name="q_disc_1"]:checked')?.value || 0);
+            const q_disc_2 = parseInt(document.querySelector('input[name="q_disc_2"]:checked')?.value || 0);
+            
+            const q_comm_1 = parseInt(document.querySelector('input[name="q_comm_1"]:checked')?.value || 0);
+            const q_comm_2 = parseInt(document.querySelector('input[name="q_comm_2"]:checked')?.value || 0);
+
+            if (!q_teach_1 || !q_teach_2 || !q_teach_3 || !q_disc_1 || !q_disc_2 || !q_comm_1 || !q_comm_2) {
+                showAlert("ກະລຸນາຕອບຄຳຖາມໃຫ້ຄົບທຸກຂໍ້.", "error");
+                return;
+            }
+
+            // Create record
+            const newRecord = {
+                id: "eval-" + Date.now(),
+                type: evalType,
+                evaluatorId: evaluatorId,
+                targetId: targetId,
+                scores: {
+                    teach: [q_teach_1, q_teach_2, q_teach_3],
+                    disc: [q_disc_1, q_disc_2],
+                    comm: [q_comm_1, q_comm_2]
+                },
+                comment: document.getElementById('comment').value.trim()
+            };
+
+            // Check if evaluator already evaluated this target in this mode
+            const duplicateIndex = state.evaluations.findIndex(record => 
+                record.type === evalType && 
+                record.evaluatorId === evaluatorId && 
+                record.targetId === targetId
+            );
+
+            if (duplicateIndex > -1) {
+                // Update existing record
+                state.evaluations[duplicateIndex] = newRecord;
+                showAlert("ໄດ້ອັບເດດການປະເມີນກ່ອນໜ້ານີ້ຂອງທ່ານເປັນຄ່າໃໝ່ແລ້ວ!");
+            } else {
+                // Add new
+                state.evaluations.push(newRecord);
+                showAlert("ສົ່ງແບບຟອມປະເມີນສຳເລັດແລ້ວ! ຂໍ້ມູນຖືກບັນທຶກເຂົ້າລະບົບຮຽບຮ້ອຍ.");
+            }
+
+            // Save & Render update
+            localStorage.setItem('eval_records', JSON.stringify(state.evaluations));
+            resetForm();
+            renderAll();
+            
+            // Automatically redirect to dashboard to see result
+            setTimeout(() => {
+                switchTab('dashboard-tab');
+            }, 1000);
+        }
+
+        // Add New Teacher Logic
+        function addNewTeacher(e) {
+            e.preventDefault();
+            const name = document.getElementById('new-teacher-name').value.trim();
+            const role = document.getElementById('new-teacher-role').value.trim() || "ຄູສອນ";
+
+            if (!name) return;
+
+            const newT = {
+                id: "t-" + Date.now(),
+                name: name,
+                role: role
+            };
+
+            state.teachers.push(newT);
+            localStorage.setItem('eval_teachers', JSON.stringify(state.teachers));
+            
+            document.getElementById('new-teacher-name').value = "";
+            document.getElementById('new-teacher-role').value = "";
+
+            showAlert(`ເພີ່ມລາຍຊື່ "${name}" ເຂົ້າລະບົບແລ້ວ!`);
+            renderAll();
+        }
+
+        // Delete Teacher from system
+        function deleteTeacher(id, name) {
+            if (confirm(`ທ່ານຕ້ອງການລຶບຄູ "${name}" ອອກຈາກລະບົບບໍ? ຂໍ້ມູນການປະເມີນທັງໝົດທີ່ກ່ຽວຂ້ອງກັບຄູທ່ານນີ້ຈະຖືກລຶບໄປນຳ.`)) {
+                // Remove teacher
+                state.teachers = state.teachers.filter(t => t.id !== id);
+                // Remove related evaluations
+                state.evaluations = state.evaluations.filter(e => e.targetId !== id && e.evaluatorId !== id);
+
+                localStorage.setItem('eval_teachers', JSON.stringify(state.teachers));
+                localStorage.setItem('eval_records', JSON.stringify(state.evaluations));
+
+                showAlert(`ລຶບຂໍ້ມູນຂອງ "${name}" ຮຽບຮ້ອຍແລ້ວ.`, "error");
+                renderAll();
+            }
+        }
+
+        // Restore default teacher presets
+        function restoreDefaultTeachers() {
+            if (confirm("ທ່ານຕ້ອງການກັບຄືນລາຍຊື່ຄູເລີ່ມຕົ້ນທັງໝົດ ຫຼື ບໍ່? (ຂໍ້ມູນທີ່ທ່ານເພີ່ມເອງຈະຫາຍໄປ)")) {
+                state.teachers = [...DEFAULT_TEACHERS];
+                state.evaluations = [...DEFAULT_EVALUATIONS];
+                localStorage.setItem('eval_teachers', JSON.stringify(state.teachers));
+                localStorage.setItem('eval_records', JSON.stringify(state.evaluations));
+                renderAll();
+                showAlert("ກັບຄືນຄ່າເລີ່ມຕົ້ນສຳເລັດ.");
+            }
+        }
+
+        // Score calculations helper
+        // Calculation Formula: 
+        // Category Score = (Sum of Scores / Max Possible Score) * Category Weight
+        // Total Score = (Teach Weighted + Disc Weighted + Comm Weighted)
+        function calculateWeightedScore(scoresObj) {
+            if (!scoresObj) return 0;
+            
+            const teachSum = scoresObj.teach.reduce((a, b) => a + b, 0);
+            const teachScore = (teachSum / 15) * 50; // max 15 points, weight 50%
+
+            const discSum = scoresObj.disc.reduce((a, b) => a + b, 0);
+            const discScore = (discSum / 10) * 30; // max 10 points, weight 30%
+
+            const commSum = scoresObj.comm.reduce((a, b) => a + b, 0);
+            const commScore = (commSum / 10) * 20; // max 10 points, weight 20%
+
+            return teachScore + discScore + commScore;
+        }
+
+        function getGrade(score) {
+            if (score >= 90) return { label: 'A', class: 'bg-emerald-100 text-emerald-800 border-emerald-200' };
+            if (score >= 80) return { label: 'B', class: 'bg-blue-100 text-blue-800 border-blue-200' };
+            if (score >= 70) return { label: 'C', class: 'bg-amber-100 text-amber-800 border-amber-200' };
+            return { label: 'D', class: 'bg-red-100 text-red-800 border-red-200' };
+        }
+
+        // Render Dashboard tab and calculation engine
+        function renderDashboard() {
+            // Aggregate counters
+            const totalTeachers = state.teachers.length;
+            const totalEvals = state.evaluations.length;
+            const selfEvals = state.evaluations.filter(e => e.type === 'self').length;
+            const peerEvals = state.evaluations.filter(e => e.type === 'peer').length;
+
+            document.getElementById('stat-total-teachers').textContent = `${totalTeachers} ຄົນ`;
+            document.getElementById('stat-total-forms').textContent = `${totalEvals} ໃບ`;
+            document.getElementById('stat-self-forms').textContent = `${selfEvals} ຄົນ`;
+            document.getElementById('stat-peer-forms').textContent = `${peerEvals} ໃບ`;
+
+            // Calculate results per teacher
+            const tbody = document.getElementById('evaluation-table-rows');
+            tbody.innerHTML = '';
+
+            state.teachers.forEach(t => {
+                // Find self evaluation
+                const selfRecord = state.evaluations.find(e => e.targetId === t.id && e.type === 'self');
+                const selfWeighted = selfRecord ? calculateWeightedScore(selfRecord.scores) : null;
+
+                // Find peer evaluations
+                const peerRecords = state.evaluations.filter(e => e.targetId === t.id && e.type === 'peer');
+                let peerWeightedSum = 0;
+                peerRecords.forEach(r => {
+                    peerWeightedSum += calculateWeightedScore(r.scores);
+                });
+                const peerAverage = peerRecords.length > 0 ? (peerWeightedSum / peerRecords.length) : null;
+
+                // Overall Final Score = (Self % + Peer Average %) / 2
+                // Or if one is missing, use the other as 100% of evaluation
+                let finalScore = 0;
+                let scoreDetailsText = "";
+
+                if (selfWeighted !== null && peerAverage !== null) {
+                    finalScore = (selfWeighted * 0.5) + (peerAverage * 0.5);
+                    scoreDetailsText = "ລວມທັງສອງສ່ວນ";
+                } else if (selfWeighted !== null) {
+                    finalScore = selfWeighted;
+                    scoreDetailsText = "ມີແຕ່ປະເມີນຕົນເອງ";
+                } else if (peerAverage !== null) {
+                    finalScore = peerAverage;
+                    scoreDetailsText = "ມີແຕ່ເພື່ອນຮ່ວມງານປະເມີນ";
+                }
+
+                const gradeInfo = finalScore > 0 ? getGrade(finalScore) : { label: '-', class: 'bg-slate-100 text-slate-400' };
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-4">
+                        <div class="font-bold text-slate-800">${t.name}</div>
+                        <div class="text-xs text-slate-400">${t.role}</div>
+                    </td>
+                    <td class="p-4 text-center">
+                        ${selfWeighted !== null ? `<span class="font-semibold text-slate-700">${selfWeighted.toFixed(2)}%</span>` : `<span class="text-xs text-slate-400 italic">ບໍ່ທັນປະເມີນ</span>`}
+                    </td>
+                    <td class="p-4 text-center">
+                        ${peerAverage !== null ? `<span class="font-semibold text-slate-700">${peerAverage.toFixed(2)}%</span> <br><span class="text-[10px] text-slate-400">(${peerRecords.length} ຄົນປະເມີນ)</span>` : `<span class="text-xs text-slate-400 italic">ບໍ່ມີເພື່ອນປະເມີນ</span>`}
+                    </td>
+                    <td class="p-4 text-center">
+                        <span class="text-base font-extrabold ${finalScore > 0 ? 'text-blue-600' : 'text-slate-400'}">
+                            ${finalScore > 0 ? finalScore.toFixed(2) + '%' : '-'}
+                        </span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <span class="px-3 py-1.5 rounded-full text-xs font-bold border ${gradeInfo.class}">
+                            Grade ${gradeInfo.label}
+                        </span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <button onclick="viewTeacherDetail('${t.id}')" class="text-blue-600 hover:text-blue-800 font-medium text-xs bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded-lg transition-all">
+                            <i class="fa-solid fa-circle-info mr-1"></i> ເບິ່ງຂໍ້ມູນລະອຽດ
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            if (state.teachers.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="p-8 text-center text-slate-400 italic">
+                            ບໍ່ມີລາຍຊື່ຄູໃນລະບົບ, ກະລຸນາໄປທີ່ແທັບ "ຈັດການລາຍຊື່ຄູ" ເພື່ອເພີ່ມຂໍ້ມູນ.
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Render Settings Page Teachers List
+        function renderSettingsTeachers() {
+            const tbody = document.getElementById('settings-teacher-rows');
+            tbody.innerHTML = '';
+
+            state.teachers.forEach((t, index) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-all";
+                tr.innerHTML = `
+                    <td class="p-3 text-slate-400 font-medium">${index + 1}</td>
+                    <td class="p-3 font-semibold text-slate-800">${t.name}</td>
+                    <td class="p-3 text-slate-500">${t.role}</td>
+                    <td class="p-3 text-right">
+                        <button onclick="deleteTeacher('${t.id}', '${t.name}')" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-2 rounded-lg transition-all" title="ລຶບລາຍຊື່">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Open detailed view modal for individual teacher scores breakdown
+        function viewTeacherDetail(teacherId) {
+            const teacher = state.teachers.find(t => t.id === teacherId);
+            if (!teacher) return;
+
+            document.getElementById('modal-title').textContent = `ຜົນການປະເມີນ: ${teacher.name}`;
+            document.getElementById('modal-subtitle').textContent = teacher.role;
+
+            const selfRecord = state.evaluations.find(e => e.targetId === teacherId && e.type === 'self');
+            const peerRecords = state.evaluations.filter(e => e.targetId === teacherId && e.type === 'peer');
+
+            let contentHtml = '';
+
+            // Self-eval Details
+            contentHtml += `<div class="border-b border-slate-100 pb-4">
+                <h4 class="font-bold text-blue-700 mb-2 flex items-center gap-1">
+                    <i class="fa-solid fa-user-check"></i> 1. ສ່ວນການປະເມີນຕົນເອງ
+                </h4>`;
+            
+            if (selfRecord) {
+                const selfScore = calculateWeightedScore(selfRecord.scores);
+                contentHtml += `
+                    <div class="bg-blue-50 p-3 rounded-lg text-xs space-y-1 mb-2">
+                        <div class="flex justify-between"><span>ດ້ານການສອນ (ຄະແນນດິບສະເລ່ຍ):</span> <span><strong>${(selfRecord.scores.teach.reduce((a,b)=>a+b,0)/3).toFixed(2)} / 5</strong></span></div>
+                        <div class="flex justify-between"><span>ດ້ານວິໄນ (ຄະແນນດິບສະເລ່ຍ):</span> <span><strong>${(selfRecord.scores.disc.reduce((a,b)=>a+b,0)/2).toFixed(2)} / 5</strong></span></div>
+                        <div class="flex justify-between"><span>ດ້ານສ່ວນລວມ (ຄະແນນດິບສະເລ່ຍ):</span> <span><strong>${(selfRecord.scores.comm.reduce((a,b)=>a+b,0)/2).toFixed(2)} / 5</strong></span></div>
+                        <div class="border-t border-blue-200 pt-1 mt-1 flex justify-between font-bold text-sm text-blue-800">
+                            <span>ຄະແນນລວມນ້ຳໜັກ:</span> <span>${selfScore.toFixed(2)}%</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 italic"><strong>ຄຳເຫັນສ່ວນຕົວ:</strong> "${selfRecord.comment || 'ບໍ່ມີຄຳເຫັນ'}"</p>
+                `;
+            } else {
+                contentHtml += `<p class="text-xs text-slate-400 italic">ຍັງບໍ່ທັນມີຂໍ້ມູນການປະເມີນຕົນເອງ.</p>`;
+            }
+            contentHtml += `</div>`;
+
+            // Peer-eval Details
+            contentHtml += `<div class="pt-2">
+                <h4 class="font-bold text-indigo-700 mb-2 flex items-center gap-1">
+                    <i class="fa-solid fa-users"></i> 2. ສ່ວນເພື່ອນຮ່ວມງານປະເມີນ (${peerRecords.length} ທ່ານ)
+                </h4>`;
+
+            if (peerRecords.length > 0) {
+                let peerTotal = 0;
+                let peerComments = [];
+                
+                peerRecords.forEach((r, idx) => {
+                    const rScore = calculateWeightedScore(r.scores);
+                    peerTotal += rScore;
+                    const peerName = state.teachers.find(t => t.id === r.evaluatorId)?.name || "ບໍ່ລະບຸຊື່";
+                    if (r.comment) peerComments.push({ name: peerName, text: r.comment });
+                });
+
+                const peerAvg = peerTotal / peerRecords.length;
+
+                contentHtml += `
+                    <div class="bg-indigo-50 p-3 rounded-lg text-xs space-y-1 mb-3">
+                        <div class="flex justify-between font-bold text-sm text-indigo-800">
+                            <span>ຄະແນນສະເລ່ຍຖ່ວງນ້ຳໜັກ:</span> <span>${peerAvg.toFixed(2)}%</span>
+                        </div>
+                    </div>
+                `;
+
+                if (peerComments.length > 0) {
+                    contentHtml += `<p class="text-xs font-semibold text-slate-600 mb-1">ຄຳເຫັນ ແລະ ຂໍ້ສະເໜີແນະຈາກເພື່ອນຮ່ວມງານ:</p>
+                    <div class="space-y-2 max-h-[200px] overflow-y-auto pr-1">`;
+                    peerComments.forEach(c => {
+                        contentHtml += `
+                            <div class="bg-slate-50 p-2.5 rounded border border-slate-100 text-xs">
+                                <span class="font-semibold text-slate-600">${c.name}:</span>
+                                <span class="text-slate-500 italic">"${c.text}"</span>
+                            </div>
+                        `;
+                    });
+                    contentHtml += `</div>`;
+                } else {
+                    contentHtml += `<p class="text-xs text-slate-400 italic">ບໍ່ມີຄວາມຄິດເຫັນເພີ່ມເຕີມ.</p>`;
+                }
+            } else {
+                contentHtml += `<p class="text-xs text-slate-400 italic">ຍັງບໍ່ທັນມີເພື່ອນຮ່ວມງານເຂົ້າມາປະເມີນ.</p>`;
+            }
+            contentHtml += `</div>`;
+
+            document.getElementById('modal-content').innerHTML = contentHtml;
+            document.getElementById('detail-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        // Reset all evaluation data (Clear form history)
+        function resetAllData() {
+            if (confirm("ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບ ຜົນການປະເມີນທັງໝົດ ອອກຈາກລະບົບ? (ລາຍຊື່ຄູຈະຍັງຄືເກົ່າ)")) {
+                state.evaluations = [];
+                localStorage.setItem('eval_records', JSON.stringify(state.evaluations));
+                renderAll();
+                showAlert("ລຶບຜົນການປະເມີນທັງໝົດສຳເລັດແລ້ວ.", "error");
+            }
+        }
+
+        // Export data to CSV so they can open in Excel
+        function exportToCSV() {
+            if (state.teachers.length === 0) {
+                showAlert("ບໍ່ມີຂໍ້ມູນຄູເພື່ອສົ່ງອອກ.", "error");
+                return;
+            }
+
+            // CSV Header with BOM for Lao characters support in Excel
+            let csvContent = "\uFEFF";
+            csvContent += "ຊື່ ແລະ ນາມສະກຸນ,ຕຳແໜ່ງ,ຄະແນນປະເມີນຕົນເອງ (50%),ຄະແນນເພື່ອນຮ່ວມງານ (50%),ຄະແນນລວມ (%),ເກຣດ/ປະເພດ\n";
+
+            state.teachers.forEach(t => {
+                // Self
+                const selfRecord = state.evaluations.find(e => e.targetId === t.id && e.type === 'self');
+                const selfScore = selfRecord ? calculateWeightedScore(selfRecord.scores).toFixed(2) : "0.00";
+
+                // Peer
+                const peerRecords = state.evaluations.filter(e => e.targetId === t.id && e.type === 'peer');
+                let peerWeightedSum = 0;
+                peerRecords.forEach(r => { peerWeightedSum += calculateWeightedScore(r.scores); });
+                const peerScore = peerRecords.length > 0 ? (peerWeightedSum / peerRecords.length).toFixed(2) : "0.00";
+
+                // Final
+                let finalScore = 0;
+                if (selfRecord && peerRecords.length > 0) {
+                    finalScore = (parseFloat(selfScore) * 0.5) + (parseFloat(peerScore) * 0.5);
+                } else if (selfRecord) {
+                    finalScore = parseFloat(selfScore);
+                } else if (peerRecords.length > 0) {
+                    finalScore = parseFloat(peerScore);
+                }
+
+                const grade = finalScore > 0 ? getGrade(finalScore).label : "-";
+
+                // Add row, clean commas to prevent CSV column breaking
+                const cleanName = t.name.replace(/,/g, ' ');
+                const cleanRole = t.role.replace(/,/g, ' ');
+
+                csvContent += `"${cleanName}","${cleanRole}",${selfScore},${peerScore},${finalScore.toFixed(2)},"${grade}"\n`;
+            });
+
+            // Trigger browser download
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", `ສະຫຼຸບຜົນການປະເມີນຄູ_2025_2026.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
