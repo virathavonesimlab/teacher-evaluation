@@ -50,17 +50,54 @@
             </div>
             
             <!-- Menu Navigation Tabs -->
-            <nav class="flex bg-blue-700 p-1 rounded-lg">
-                <button onclick="switchTab('form-tab')" id="btn-form-tab" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all bg-white text-blue-700 shadow-sm">
-                    <i class="fa-solid fa-clipboard-question mr-1"></i> ແບບຟອມປະເມີນ
-                </button>
-                <button onclick="switchTab('dashboard-tab')" id="btn-dashboard-tab" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-blue-100 hover:text-white">
-                    <i class="fa-solid fa-chart-line mr-1"></i> ຜົນການປະເມີນ
-                </button>
-                <button onclick="switchTab('settings-tab')" id="btn-settings-tab" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-blue-100 hover:text-white">
-                    <i class="fa-solid fa-gears mr-1"></i> ຈັດການລາຍຊື່ຄູ
-                </button>
-            </nav>
+            // ກຳນົດລະຫັດຜ່ານສຳລັບຜູ້ບໍລິຫານ (ທ່ານສາມາດປ່ຽນ "Admin1234" ເປັນລະຫັດທີ່ທ່ານຕ້ອງການໄດ້)
+const ADMIN_PASSWORD = "Admin1234"; 
+
+function switchTab(tabId) {
+    // ຖ້າກົດເຂົ້າແຖບຜົນການປະເມີນ ຫຼື ຈັດການລາຍຊື່ຄູ ຕ້ອງກວດສອບລະຫັດຜ່ານກ່ອນ
+    if (tabId === 'dashboard-tab' || tabId === 'settings-tab') {
+        const passwordInput = prompt("🔒 ຂໍ້ຄວາມລັບ: ກະລຸນາໃສ່ລະຫັດຜ່ານເພື່ອເຂົ້າເຖິງຂໍ້ມູນຜົນການປະເມີນ:");
+        
+        if (passwordInput === null) {
+            // ຖ້າຜູ້ໃຊ້ກົດ Cancel (ຍົກເລີກ)
+            return; 
+        }
+        
+        if (passwordInput !== ADMIN_PASSWORD) {
+            // ຖ້າໃສ່ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ
+            alert("❌ ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ! ທ່ານບໍ່ມີສິດເຂົ້າເຖິງຂໍ້ມູນນີ້.");
+            return;
+        }
+    }
+
+    // --- ສ່ວນຂອງ Code ສະຫຼັບ Tab ເດີມຂອງທ່ານ ---
+    // ເຊື່ອງທຸກໆ Tab content
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.classList.remove('block');
+        tab.classList.add('hidden');
+    });
+
+    // ສະແດງ Tab ທີ່ເລືອກ
+    const activeTab = document.getElementById(tabId);
+    if (activeTab) {
+        activeTab.classList.remove('hidden');
+        activeTab.classList.add('block');
+    }
+
+    // ປ່ຽນສີປຸ່ມໃຫ້ Active ຕາມ Tab ທີ່ເລືອກ
+    const buttons = document.querySelectorAll('nav button');
+    buttons.forEach(btn => {
+        btn.classList.remove('bg-white', 'text-blue-700', 'shadow-sm');
+        btn.classList.add('text-blue-100', 'hover:text-white');
+    });
+
+    const activeBtn = document.getElementById(`btn-${tabId}`);
+    if (activeBtn) {
+        activeBtn.classList.remove('text-blue-100', 'hover:text-white');
+        activeBtn.classList.add('bg-white', 'text-blue-700', 'shadow-sm');
+    }
+}
         </div>
     </header>
 
