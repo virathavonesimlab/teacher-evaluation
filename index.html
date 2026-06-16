@@ -50,54 +50,17 @@
             </div>
             
             <!-- Menu Navigation Tabs -->
-            // ກຳນົດລະຫັດຜ່ານສຳລັບຜູ້ບໍລິຫານ (ທ່ານສາມາດປ່ຽນ "Admin1234" ເປັນລະຫັດທີ່ທ່ານຕ້ອງການໄດ້)
-const ADMIN_PASSWORD = "Admin1234"; 
-
-function switchTab(tabId) {
-    // ຖ້າກົດເຂົ້າແຖບຜົນການປະເມີນ ຫຼື ຈັດການລາຍຊື່ຄູ ຕ້ອງກວດສອບລະຫັດຜ່ານກ່ອນ
-    if (tabId === 'dashboard-tab' || tabId === 'settings-tab') {
-        const passwordInput = prompt("🔒 ຂໍ້ຄວາມລັບ: ກະລຸນາໃສ່ລະຫັດຜ່ານເພື່ອເຂົ້າເຖິງຂໍ້ມູນຜົນການປະເມີນ:");
-        
-        if (passwordInput === null) {
-            // ຖ້າຜູ້ໃຊ້ກົດ Cancel (ຍົກເລີກ)
-            return; 
-        }
-        
-        if (passwordInput !== ADMIN_PASSWORD) {
-            // ຖ້າໃສ່ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ
-            alert("❌ ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ! ທ່ານບໍ່ມີສິດເຂົ້າເຖິງຂໍ້ມູນນີ້.");
-            return;
-        }
-    }
-
-    // --- ສ່ວນຂອງ Code ສະຫຼັບ Tab ເດີມຂອງທ່ານ ---
-    // ເຊື່ອງທຸກໆ Tab content
-    const tabs = document.querySelectorAll('.tab-content');
-    tabs.forEach(tab => {
-        tab.classList.remove('block');
-        tab.classList.add('hidden');
-    });
-
-    // ສະແດງ Tab ທີ່ເລືອກ
-    const activeTab = document.getElementById(tabId);
-    if (activeTab) {
-        activeTab.classList.remove('hidden');
-        activeTab.classList.add('block');
-    }
-
-    // ປ່ຽນສີປຸ່ມໃຫ້ Active ຕາມ Tab ທີ່ເລືອກ
-    const buttons = document.querySelectorAll('nav button');
-    buttons.forEach(btn => {
-        btn.classList.remove('bg-white', 'text-blue-700', 'shadow-sm');
-        btn.classList.add('text-blue-100', 'hover:text-white');
-    });
-
-    const activeBtn = document.getElementById(`btn-${tabId}`);
-    if (activeBtn) {
-        activeBtn.classList.remove('text-blue-100', 'hover:text-white');
-        activeBtn.classList.add('bg-white', 'text-blue-700', 'shadow-sm');
-    }
-}
+            <nav class="flex bg-blue-700 p-1 rounded-lg">
+                <button onclick="switchTab('form-tab')" id="btn-form-tab" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all bg-white text-blue-700 shadow-sm">
+                    <i class="fa-solid fa-clipboard-question mr-1"></i> ແບບຟອມປະເມີນ
+                </button>
+                <button onclick="switchTab('dashboard-tab')" id="btn-dashboard-tab" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-blue-100 hover:text-white">
+                    <i class="fa-solid fa-chart-line mr-1"></i> ຜົນການປະເມີນ
+                </button>
+                <button onclick="switchTab('settings-tab')" id="btn-settings-tab" class="px-4 py-1.5 rounded-md text-sm font-medium transition-all text-blue-100 hover:text-white">
+                    <i class="fa-solid fa-gears mr-1"></i> ຈັດການລາຍຊື່ຄູ
+                </button>
+            </nav>
         </div>
     </header>
 
@@ -189,7 +152,7 @@ function switchTab(tabId) {
                             <div>
                                 <h3 class="text-base font-bold text-blue-700 border-b border-blue-100 pb-2 mb-4 flex items-center gap-2">
                                     <span class="w-6 h-6 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-xs">1</span>
-                                    ດ້ານການຈັດການຮຽນ-ການສອນ 
+                                    ດ້ານການຈັດການຮຽນ-ການສອນ (ນ້ຳໜັກ 50%)
                                 </h3>
                                 <div class="space-y-4">
                                     <!-- Q1 -->
@@ -296,7 +259,7 @@ function switchTab(tabId) {
                             <div>
                                 <h3 class="text-base font-bold text-indigo-700 border-b border-indigo-100 pb-2 mb-4 flex items-center gap-2">
                                     <span class="w-6 h-6 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs">2</span>
-                                    ດ້ານຄວາມຮັບຜິດຊອບ ແລະ ວິໄນ 
+                                    ດ້ານຄວາມຮັບຜິດຊອບ ແລະ ວິໄນ (ນ້ຳໜັກ 30%)
                                 </h3>
                                 <div class="space-y-4">
                                     <!-- Q4 -->
@@ -358,7 +321,7 @@ function switchTab(tabId) {
                             <div>
                                 <h3 class="text-base font-bold text-amber-700 border-b border-amber-100 pb-2 mb-4 flex items-center gap-2">
                                     <span class="w-6 h-6 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-xs">3</span>
-                                    ດ້ານການມີສ່ວນຮ່ວມ ແລະ ມະນຸດສຳພັນ 
+                                    ດ້ານການມີສ່ວນຮ່ວມ ແລະ ມະນຸດສຳພັນ (ນ້ຳໜັກ 20%)
                                 </h3>
                                 <div class="space-y-4">
                                     <!-- Q6 -->
@@ -427,7 +390,7 @@ function switchTab(tabId) {
                         <!-- Action Buttons -->
                         <div class="pt-4 border-t border-slate-100 flex gap-3">
                             <button type="button" onclick="resetForm()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium py-3 rounded-xl transition-all">
-                                ລ້າງຂໍ້ມູນ
+                                ล້າງຂໍ້ມູນ
                             </button>
                             <button type="submit" class="flex-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-lg shadow-blue-100 flex items-center justify-center gap-2">
                                 <i class="fa-solid fa-paper-plane"></i> ສົ່ງແບບປະເມີນ
@@ -633,43 +596,11 @@ function switchTab(tabId) {
     <script>
         // Default Teachers list to start with (so the app isn't empty on load)
         const DEFAULT_TEACHERS = [
-            // ລາຍຊື່ຄູ-ອາຈານທັງໝົດ 35 ທ່ານ ທີ່ອັບເດດໃໝ່
-const teachers = [
-    { id: "T01", name: "ນາງ ນີລາວັນ ວິຣະຖາວອນ", role: "ຜູ້ອຳນວຍການ" },
-    { id: "T02", name: "ທ້າວ ແສງຕາວັນ ວິຣະຖາວອນລາຊພົນ", role: "ຮອງ ຜອ" },
-    { id: "T03", name: "ນາງ ໄຄແກ້ວ ພົມມະຄຳ", role: "ຮອງ ຜອ" },
-    { id: "T04", name: "ທ້າວ ສີໂຫ ວັນນະສີ", role: "ຮອງ ຜອ" },
-    { id: "T05", name: "ນາງ ຄອນສະໄໝ ໂສມເສນີວົງ", role: "ຄູສອນ ວິຊາ ປະຫວັດສາດ" },
-    { id: "T06", name: "ນາງ ບຸມຕາ ຄຳພູວົງ", role: "ຄູສອນ ວິຊາ ຄະນິດສາດ" },
-    { id: "T07", name: "ນາງ ຕານ້ອຍ ຈັນທະວົງ", role: "ຄູສອນ ວິຊາ ພາສາລາວ" },
-    { id: "T08", name: "ນາງ ຈັນທະຈອນ ທິບພະຈັນ", role: "ຄູສອນ ວິຊາ ຟີຊິກສາດ" },
-    { id: "T09", name: "ນາງ ໄກສອນ ທະນູຄຳ", role: "ຄູສອນ ວິຊາ ພາສາລາວ" },
-    { id: "T10", name: "ນາງ ເຈຕາລິນ ພິມມະສອນ", role: "ຄູສອນ ວິຊາ ພາສາລາວ" },
-    { id: "T11", name: "ທ້າວ ສຸລິວັນ ມຸນີວົງ", role: "ຄູສອນ ວິຊາ ສຶກສາພົນລະເມືອງ" },
-    { id: "T12", name: "ນາງ ສອນຕາ ໄຊຍະຖາ", role: "ຄູສອນ ວິຊາ ຊີວະສາດ" },
-    { id: "T13", name: "ນາງ ເມກະຫຼາ ໄຊຍະວົງສາ", role: "ຄູສອນ ວິຊາ ຊີວະສາດ" },
-    { id: "T14", name: "ນາງ ປານຕາ ສາຍຊົ່ງເດດ", role: "ຄູສອນ ວິຊາ ICT" },
-    { id: "T15", name: "ນາງ ພຸດທະພອນ ພູມິນ", role: "ຄູສອນ ວິຊາ ເຄມີສາດ" },
-    { id: "T16", name: "ນາງ ສຸມິດຕາ ພິມມະສອນ", role: "ຄູສອນ ວິຊາ ພາສາຈີນ" },
-    { id: "T17", name: "ນາງ ຄານສີ ສິດທິວົງ", role: "ຄູສອນ ວິຊາ ເຄມີສາດ" },
-    { id: "T18", name: "ນາງ ແສງມະນີ ສີຊານົນ", role: "ຄູສອນ ວິຊາ ຄະນິດສາດ" },
-    { id: "T19", name: "ນາງ ແສງເດືອນ ວິຊຸນນະລາດ", role: "ຄູສອນ ວິຊາ ຄະນິດສາດ" },
-    { id: "T20", name: "ທ້າວ ສຸກັນ ຍາສາມສະອາດ", role: "ຄູສອນ ວິຊາ ຄະນິດສາດ" },
-    { id: "T21", name: "ນາງ ລັດສະໝີ ໄມຈັນຕາງ", role: "ຄູສອນ ວິຊາ ພູມສາດ" },
-    { id: "T22", name: "ທ້າວ ແທນຟູ ໄຊຍະວື", role: "ຄູສອນ ວິຊາ ພູມສາດ" },
-    { id: "T23", name: "ທ້າວ ຍອດ ວົງສຳພັນ", role: "ຄູສອນ ວິຊາ ສຶກສາພົນລະເມືອງ" },
-    { id: "T24", name: "ນາງ ພັດສະລິນ ປະດິດ", role: "ຄູສອນ ວິຊາ ພະລະສຶກສາ" },
-    { id: "T25", name: "ທ້າວ ກອງມະນີ ອຸ່ນມະໂນ", role: "ຄູສອນ ວິຊາ ຟີຊິກສາດ" }, 
-    { id: "T26", name: "ນາງ ວາດສະໜາ ດາລາວົງ", role: "ຄູສອນ ວິຊາ ພາສາຈີນ" },
-    { id: "T27", name: "ນາງ ພິລາວັນ ກອງລາ", role: "ຄູສອນ ວິຊາ ພາສາລາວ" },
-    { id: "T28", name: "ທ້າວ ຫຼົງຢ່າງ ຫວ່າງປໍ", role: "ຄູສອນ ວິຊາ ຄະນິດສາດ" },
-    { id: "T29", name: "ນາງ ໄດນານາ ສົມສາຍ", role: "ຄູສອນ ວິຊາ ເຄມີສາດ" },
-    { id: "T30", name: "ນາງ ລະນະລັດ ວົງພັກດີ", role: "ຄູສອນ ວິຊາ ຊີວະສາດ" },
-    { id: "T31", name: "ທ້າວ ໄມອ່ອນ ໄຊຍະວົງ", role: "ຄູສອນ ວິຊາ ພາສາລາວ" },
-    { id: "T32", name: "ນາງ ແສງມະນີ ສີບໍລິບານ", role: "ຄູສອນ ວິຊາ ພາສາຈີນ" },
-    { id: "T33", name: "ທ້າວ ໂອລິເຊ ຈັນທະວົງ", role: "ຄູສອນ ວິຊາ ປະຫວັດສາດ" },
-    { id: "T34", name: "ທ້າວ ຄຳມ່ວນ ສຸລິທອນ", role: "ຄູສອນ ວິຊາ ແຕ້ມຮູບ" }
-];
+            { id: "t1", name: "ນາງ ມະນີວອນ ພົມມະຈັນ", role: "ຄູສອນ ຄະນິດສາດ" },
+            { id: "t2", name: "ທ້າວ ບຸນທັນ ແກ້ວມະນີ", role: "ຄູສອນ ຟີຊິກສາດ" },
+            { id: "t3", name: "ນາງ ວິໄລວັນ ສີສະຫວັນ", role: "ຄູສອນ ພາສາລາວ-ວັນນະຄະດີ" },
+            { id: "t4", name: "ທ້າວ ສົມພອນ ວິໄລສັກ", role: "ຄູສອນ ປະຫວັດສາດ" },
+            { id: "t5", name: "ນາງ ສຸດາພອນ ແສງດາລາ", role: "ຄູສອນ ພາສາອັງກິດ" }
         ];
 
         // Sample initial evaluation records to show how the system automatically aggregates results immediately.
