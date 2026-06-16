@@ -915,10 +915,8 @@ function switchTab(tabId) {
             resetForm();
             renderAll();
             
-            // Automatically redirect to dashboard to see result
-            setTimeout(() => {
-                switchTab('dashboard-tab');
-            }, 1000);
+            // ແຈ້ງເຕືອນບອກວ່າສົ່ງສຳເລັດແລ້ວ
+            showAlert("🎉 ສົ່ງແບບຟອມປະເມີນສຳເລັດແລ້ວ! ຂໍ້ມູນຖືກບັນທຶກເຂົ້າລະບົບຮຽບຮ້ອຍ.");
         }
 
         // Add New Teacher Logic
